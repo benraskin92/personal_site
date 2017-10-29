@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<link rel="stylesheet" href="static/css/main.css">
 <head>
     <meta charset="UTF-8">
     <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -9,41 +10,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Benjamin Raskin | Homepage</title>
 </head>
-<body>
+<br>
 
-    <div class="dropdown">
-      <!--<button class="dropbtn">Dropdown</button>-->
-      <div id="myDropdown" class="dropdown-content">
-        <a href="{{ url_for('index', neighborhood='') }}">See all</a>
-        <a href="{{ url_for('index', neighborhood='Chelsea') }}">Chelsea</a>
-        <a href="{{ url_for('index', neighborhood='Brooklyn') }}">Brooklyn</a>
-        <a href="{{ url_for('index', neighborhood='East Village') }}">East Village</a>
-        <a href="{{ url_for('index', neighborhood='Gramercy') }}">Gramercy</a>
-        <a href="{{ url_for('index', neighborhood='Greenwich Village') }}">Greenwich Village</a>
-        <a href="{{ url_for('index', neighborhood='LES') }}">LES</a>
-        <a href="{{ url_for('index', neighborhood='Soho') }}">Soho</a>
-        <a href="{{ url_for('index', neighborhood='Midtown') }}">Midtown</a>
-      </div>
-    </div>
 
-    <div class="dropdown">
-      <!--<button class="dropbtn">Dropdown</button>-->
-      <div id="myDropdown" class="dropdown-content">
-        <a href="{{ url_for('index', cost='$') }}">$</a>
-        <a href="{{ url_for('index', cost='$$') }}">$$</a>
-        <a href="{{ url_for('index', cost='$$$') }}">$$$</a>
-        <a href="{{ url_for('index', cost='$$$$') }}">$$$$</a>
-      </div>
-    </div>
+
+    <form class="form">
+        <br method="GET">
+        <div class="switch-field">
+          <div class="switch-title">Neighborhood</div>
+          <input type="checkbox" id="switch" name="neighborhood" value="*"/>
+          <label for="switch">All</label>
+          <input type="checkbox" id="switchOne" name="neighborhood" value="Chelsea"/>
+          <label for="switchOne">Chelsea</label>
+          <input type="checkbox" id="switchTwo" name="neighborhood" value="Brooklyn" />
+          <label for="switchTwo">Brooklyn</label>
+          <input type="checkbox" id="switchThree" name="neighborhood" value="East Village" />
+          <label for="switchThree">East Village</label>
+          <input type="checkbox" id="switchFour" name="neighborhood" value="LES" />
+          <label for="switchFour">LES</label>
+          <input type="checkbox" id="switchFive" name="neighborhood" value="Soho" />
+          <label for="switchFive">Soho</label>
+          <input type="checkbox" id="switchSix" name="neighborhood" value="Midtown" />
+          <label for="switchSix">Midtown</label>
+          <input type="checkbox" id="switchSeven" name="neighborhood" value="Greenwich Village" />
+          <label for="switchSeven">Greenwich Village</label>
+          <input type="checkbox" id="switchEight" name="neighborhood" value="Gramercy" />
+          <label for="switchEight">Gramercy</label>
+        </div>
+        <div class="switch-field">
+          <div class="switch-title">Cost</div>
+          <input type="checkbox" id="cost" name="cost" value="*"/>
+          <label for="cost">All</label>
+          <input type="checkbox" id="costOne" name="cost" value="$"/>
+          <label for="costOne">$</label>
+          <input type="checkbox" id="costTwo" name="cost" value="$$" />
+          <label for="costTwo">$$</label>
+          <input type="checkbox" id="costThree" name="cost" value="$$$" />
+          <label for="costThree">$$$</label>
+          <input type="checkbox" id="costFour" name="cost" value="$$$$" />
+          <label for="costFour">$$$$</label>
+        </div>
+        <input type="submit"/>
+    </form>
 
     {% for restaurant in restaurants %}
             <ul>
-                <li>Neighborhood: <b>{{ restaurant[0] }}</b></li>
-                <li>Cuisine: <b>{{ restaurant[1] }}</b></li>
-                <li>Name: <b>{{ restaurant[2] }}</b></li>
+                <h3>{{ restaurant[2] }}</h3>
+                {{ restaurant[1] }} &middot; {{ restaurant[0] }}
                 <li>Cost: <b>{{ restaurant[3] }}</b></li>
-                <li>Been There: <b>{{ restaurant[4] }}</b></li>
+                <li><a href={{ restaurant[7] }}>Menu</a></a></li>
                 <li>Notes: <b>{{ restaurant[5] }}</b></li>
+                <li>Favorite Dishes: <b>{{ restaurant[8] }}</b></li>
+                <li>Address: <b>{{ restaurant[9] }}</b></li>
             </ul>
     {% endfor %}
 

@@ -1,23 +1,23 @@
 from flask import Flask, render_template, request
-from restaurants import get_restaurants
+from restaurants import get_restaurants, get_parameters
 from csv_to_sql import create_connection
 import csv
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
-    neighborhood = request.args.get('neighborhood') or '*'
-    cost = request.args.get('cost') or '*'
-    cuisine = request.args.get('cuisine') or '*'
-
-    print "neighborhood {}".format(neighborhood)
+    neighborhood = request.args.getlist('neighborhood') or '*'
+    cost = request.args.getlist('cost') or '*'
+    cuisine = request.args.getlist('cuisine') or '*'
 
     parameters = {"neighborhood": neighborhood, "cost": cost, "cuisine": cuisine}
 
-    print parameters
+    parsed_parameters = get_parameters(parameters)
 
-    restaurants = get_restaurants('restaurants.csv', parameters)
+    print parsed_parameters
+
+    restaurants = get_restaurants('restaurants.csv', parsed_parameters)
 
     restaurants = [list(entry) for entry in restaurants]
     return render_template('homepage.html', restaurants=restaurants)

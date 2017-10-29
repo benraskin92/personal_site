@@ -9,13 +9,13 @@ def create_table():
 
     conn, cur = create_connection('restaurants.db')
     cur.execute("DROP TABLE IF EXISTS restaurants")
-    cur.execute("CREATE TABLE restaurants (neighborhood, cuisine, name, cost, complete, notes, line);")
+    cur.execute("CREATE TABLE restaurants (neighborhood, cuisine, name, cost, complete, notes, line, menu, favorite_items, address);")
 
     with open('restaurants.csv', 'rb') as rest_file:
         data = csv.DictReader(rest_file)
-        to_db = [(i['neighborhood'], i['cuisine'], i['name'], i['cost'], i['complete'], i['notes'], i['line']) for i in data]
+        to_db = [(i['neighborhood'], i['cuisine'], i['name'], i['cost'], i['complete'], i['notes'], i['line'], i['menu'], i['favorite_items'], i['address']) for i in data]
 
-    cur.executemany("INSERT INTO restaurants (neighborhood, cuisine, name, cost, complete, notes, line) VALUES (?,?,?,?,?,?,?);", to_db)
+    cur.executemany("INSERT INTO restaurants (neighborhood, cuisine, name, cost, complete, notes, line, menu, favorite_items, address) VALUES (?,?,?,?,?,?,?,?,?,?);", to_db)
     conn.commit()
     conn.close()
 
