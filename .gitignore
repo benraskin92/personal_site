@@ -1,5 +1,3 @@
 .DS_Store
 *.pyc
-restaurants.db
-restaurants.csv
 **/.idea/workspace.xml
