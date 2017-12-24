@@ -1,6 +1,6 @@
 .switch-field {
   font-family: "Lucida Grande", Tahoma, Verdana, sans-serif;
-  padding: 10px;
+  padding: 20px;
   overflow: hidden;
 }
 
@@ -23,7 +23,7 @@
 
 .switch-field label {
   display: inline-block;
-  width: 120px;
+  width: 220px;
   background-color: #e4e4e4;
   color: rgba(0, 0, 0, 0.6);
   font-size: 14px;
@@ -57,4 +57,9 @@
 
 .switch-field label:last-of-type {
   border-radius: 0 4px 4px 0;
+}
+
+.submit_choices {
+  padding: 10px;
+  margin-left: 20px;
 }
